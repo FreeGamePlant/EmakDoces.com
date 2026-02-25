@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Cardápio</title>
+    <title>Cardápio · especial</title>
     <style>
+        /* RESET e estilos base */
         * {
             margin: 0;
             padding: 0;
@@ -12,157 +13,235 @@
         }
 
         body {
-            background: #f3e9de; /* tom suave de fundo */
-            font-family: 'Georgia', 'Times New Roman', serif;
+            background: #2c1e14; /* tom escuro para destacar o card como uma peça */
+            background-image: radial-gradient(circle at 30% 40%, #3f2e22 0%, #1f150f 100%);
+            font-family: 'Georgia', 'Times New Roman', 'Playfair Display', serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px;
+            padding: 12px;
         }
 
-        /* Container principal com estilo de carta */
+        /* Card principal com textura e profundidade */
         .menu-card {
-            max-width: 480px; /* largura ideal para mobile */
+            max-width: 480px;
             width: 100%;
-            background-color: #fffaf5;
-            border-radius: 32px 32px 28px 28px;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            border: 1px solid #ead5c0;
+            background-color: #fcf7f0;
+            background-image: 
+                linear-gradient(145deg, rgba(250, 240, 230, 0.4) 0%, rgba(235, 215, 195, 0.2) 100%),
+                repeating-linear-gradient(45deg, rgba(200, 170, 140, 0.02) 0px, rgba(200, 170, 140, 0.02) 2px, transparent 2px, transparent 8px);
+            border-radius: 36px 36px 32px 32px;
+            box-shadow: 
+                0 20px 35px -8px rgba(0,0,0,0.7),
+                0 0 0 1px #ab8b72 inset,
+                0 0 0 2px #f3e7dd inset;
+            position: relative;
             transition: transform 0.2s ease;
         }
 
-        /* Cabeçalho com título */
+        /* Efeito de vinco no canto (como dobra de papel) */
+        .menu-card::before {
+            content: "";
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 100% 0%, rgba(150, 120, 90, 0.2) 0%, transparent 70%);
+            border-radius: 0 0 0 30px;
+            transform: rotate(0deg);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Cabeçalho com ornamentos manuais */
         .menu-header {
-            background: #fffaf5;
-            padding: 20px 20px 12px;
+            padding: 24px 24px 12px;
             text-align: center;
-            border-bottom: 1px dashed #dcc9b6;
+            position: relative;
         }
 
         .menu-header h1 {
-            font-size: 2.4rem; /* um pouco menor que antes, bom para mobile */
+            font-size: 3rem;
             font-weight: 400;
-            letter-spacing: 2px;
-            color: #613f2f;
+            letter-spacing: 4px;
+            color: #4f3729;
             text-transform: uppercase;
-            font-family: 'Georgia', 'Times New Roman', serif;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-            background: linear-gradient(145deg, #7b4b3a, #b48b6e);
+            font-family: 'Playfair Display', 'Georgia', serif;
+            text-shadow: 2px 2px 0 rgba(255, 245, 235, 0.8);
+            background: linear-gradient(165deg, #5e3e2e, #946b50);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
-            padding: 0 8px;
-            line-height: 1.2;
+            line-height: 1.1;
+            margin-bottom: 8px;
         }
 
-        /* Linhas decorativas com ajuste para mobile */
-        .header-decoration {
+        .header-ornament {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin-top: 8px;
+            gap: 12px;
+            margin: 5px 0;
         }
 
-        .header-decoration span {
-            display: block;
-            width: 40px;
+        .header-ornament .line {
+            width: 50px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #c4a78b, transparent);
+            background: linear-gradient(90deg, transparent, #c2a185, #ab8b72, #c2a185, transparent);
         }
 
-        .header-decoration i {
-            color: #b48b6e;
-            font-size: 1.2rem;
+        .header-ornament i {
+            font-size: 1.8rem;
             font-style: normal;
+            color: #ac8b70;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
         }
 
-        /* Área da imagem */
-        .image-area {
-            padding: 16px 16px 8px;
+        .header-sub {
+            font-size: 0.9rem;
+            color: #7a624d;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Área da imagem com moldura especial */
+        .image-frame {
+            padding: 12px 24px 8px;
         }
 
         .image-wrapper {
-            border-radius: 24px;
-            overflow: hidden;
-            border: 6px solid #ffffff;
-            box-shadow: 0 6px 16px rgba(94, 58, 44, 0.15);
-            background-color: #f1e2d4;
-            transition: box-shadow 0.3s ease;
+            position: relative;
+            border-radius: 28px;
+            background: #e7d6c4;
+            padding: 10px;
+            box-shadow: 
+                0 10px 20px -5px rgba(60, 40, 25, 0.5),
+                0 0 0 1px #bb9b82 inset,
+                0 0 0 3px #fdf3e8 inset;
+            transform: rotate(0.5deg); /* leve inclinação para descontrair */
+            transition: all 0.25s ease;
+        }
+
+        /* Sobreposição delicada para dar profundidade */
+        .image-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border-radius: 20px;
+            box-shadow: 0 0 0 1px rgba(255, 245, 235, 0.6), inset 0 2px 5px rgba(0,0,0,0.1);
+            pointer-events: none;
         }
 
         .image-wrapper img {
             display: block;
             width: 100%;
             height: auto;
-            aspect-ratio: attr(width) / attr(height); /* mantém proporção */
-            border-radius: 18px; /* borda interna */
-            transition: transform 0.4s ease;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: filter 0.4s ease, transform 0.3s ease;
+            background-color: #f1e3d3;
         }
 
-        /* Efeito sutil ao toque */
-        .image-wrapper:active {
-            box-shadow: 0 8px 20px rgba(94, 58, 44, 0.3);
-        }
-
+        /* Interação ao toque: imagem "levanta" */
         .image-wrapper:active img {
             transform: scale(1.02);
+            filter: brightness(1.05);
         }
 
-        /* Rodapé com legenda */
+        /* Pequena tag decorativa */
+        .image-tag {
+            position: absolute;
+            bottom: 20px;
+            left: 35px;
+            background: #dcb69b;
+            color: #2d1d13;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 6px 18px;
+            border-radius: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid #fae5d3;
+            backdrop-filter: blur(2px);
+            z-index: 5;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Rodapé com selo/carimbo */
         .menu-footer {
+            padding: 20px 24px 30px;
             text-align: center;
-            padding: 12px 20px 22px;
+            position: relative;
         }
 
-        .caption {
+        .footer-stamp {
             display: inline-block;
-            background: #f0e4d8;
-            padding: 8px 22px;
-            border-radius: 40px;
-            font-size: 1rem;
-            color: #4f372b;
-            letter-spacing: 0.8px;
-            border: 1px solid #e1ccbb;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            background: #f0e1d2;
+            border-radius: 100px;
+            padding: 12px 30px;
+            border: 2px dashed #b38e73;
+            color: #533f30;
+            font-size: 1.2rem;
             font-style: italic;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 0 #ab8a6f;
+            transform: rotate(-1deg);
+            transition: transform 0.2s ease;
         }
 
-        .caption::before, .caption::after {
-            content: "✦";
-            margin: 0 8px;
-            color: #b48b6e;
-            font-style: normal;
-            font-size: 0.9rem;
+        .footer-stamp:active {
+            transform: rotate(0deg) scale(0.98);
+            box-shadow: 0 2px 0 #ab8a6f;
         }
 
-        /* Ajustes finos para telas muito pequenas (menos de 360px) */
-        @media (max-width: 360px) {
+        .footer-stamp span {
+            font-weight: bold;
+            color: #6b422b;
+        }
+
+        /* Melhorias para telas muito pequenas */
+        @media (max-width: 380px) {
             .menu-header h1 {
-                font-size: 2rem;
+                font-size: 2.4rem;
+                letter-spacing: 2px;
             }
-            .caption {
-                font-size: 0.9rem;
-                padding: 6px 16px;
+            .header-ornament .line {
+                width: 30px;
             }
-            .image-area {
-                padding: 10px 10px 5px;
+            .image-frame {
+                padding: 8px 16px;
+            }
+            .image-tag {
+                left: 20px;
+                font-size: 0.7rem;
+                padding: 4px 12px;
+            }
+            .footer-stamp {
+                font-size: 1rem;
+                padding: 10px 20px;
             }
         }
 
-        /* Para telas maiores (como tablets) ainda fica elegante */
+        /* Tablet e telas maiores mantém elegância */
         @media (min-width: 600px) {
-            body {
-                padding: 20px;
-            }
             .menu-card {
                 max-width: 550px;
             }
             .menu-header h1 {
-                font-size: 3rem;
+                font-size: 3.4rem;
             }
+        }
+
+        /* Placeholder de carregamento suave */
+        .image-wrapper img {
+            transition: opacity 0.5s;
         }
     </style>
 </head>
@@ -170,25 +249,41 @@
     <div class="menu-card">
         <div class="menu-header">
             <h1>Cardápio</h1>
-            <div class="header-decoration">
-                <span></span>
-                <i>☕</i>
-                <span></span>
+            <div class="header-ornament">
+                <span class="line"></span>
+                <i>🕊️</i>
+                <span class="line"></span>
             </div>
+            <div class="header-sub">escolha seu sabor</div>
         </div>
 
-        <div class="image-area">
+        <div class="image-frame">
             <div class="image-wrapper">
-                <!-- Substitua "Cardápio.jpeg" pelo caminho correto da imagem -->
+                <!-- Substitua "Cardápio.jpeg" pelo caminho correto -->
                 <img src="Cardápio.jpeg" alt="Imagem do Cardápio" loading="lazy">
+                <!-- Tag flutuante decorativa -->
+                <div class="image-tag">✦ recomendado ✦</div>
             </div>
         </div>
 
         <div class="menu-footer">
-            <div class="caption">
-                Sabores que encantam
+            <div class="footer-stamp">
+                <span>Bom</span> apetite!
             </div>
         </div>
     </div>
+
+    <!-- Pequeno script para suavizar o carregamento da imagem (opcional) -->
+    <script>
+        (function() {
+            const img = document.querySelector('.image-wrapper img');
+            if (img) {
+                img.style.opacity = '0.8';
+                img.addEventListener('load', function() {
+                    img.style.opacity = '1';
+                });
+            }
+        })();
+    </script>
 </body>
 </html>
