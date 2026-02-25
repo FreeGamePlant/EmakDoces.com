@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Cardápio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f3e9de; /* tom suave de fundo */
+            font-family: 'Georgia', 'Times New Roman', serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        /* Container principal com estilo de carta */
+        .menu-card {
+            max-width: 480px; /* largura ideal para mobile */
+            width: 100%;
+            background-color: #fffaf5;
+            border-radius: 32px 32px 28px 28px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #ead5c0;
+            transition: transform 0.2s ease;
+        }
+
+        /* Cabeçalho com título */
+        .menu-header {
+            background: #fffaf5;
+            padding: 20px 20px 12px;
+            text-align: center;
+            border-bottom: 1px dashed #dcc9b6;
+        }
+
+        .menu-header h1 {
+            font-size: 2.4rem; /* um pouco menor que antes, bom para mobile */
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #613f2f;
+            text-transform: uppercase;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            background: linear-gradient(145deg, #7b4b3a, #b48b6e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            padding: 0 8px;
+            line-height: 1.2;
+        }
+
+        /* Linhas decorativas com ajuste para mobile */
+        .header-decoration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .header-decoration span {
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c4a78b, transparent);
+        }
+
+        .header-decoration i {
+            color: #b48b6e;
+            font-size: 1.2rem;
+            font-style: normal;
+        }
+
+        /* Área da imagem */
+        .image-area {
+            padding: 16px 16px 8px;
+        }
+
+        .image-wrapper {
+            border-radius: 24px;
+            overflow: hidden;
+            border: 6px solid #ffffff;
+            box-shadow: 0 6px 16px rgba(94, 58, 44, 0.15);
+            background-color: #f1e2d4;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .image-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: attr(width) / attr(height); /* mantém proporção */
+            border-radius: 18px; /* borda interna */
+            transition: transform 0.4s ease;
+        }
+
+        /* Efeito sutil ao toque */
+        .image-wrapper:active {
+            box-shadow: 0 8px 20px rgba(94, 58, 44, 0.3);
+        }
+
+        .image-wrapper:active img {
+            transform: scale(1.02);
+        }
+
+        /* Rodapé com legenda */
+        .menu-footer {
+            text-align: center;
+            padding: 12px 20px 22px;
+        }
+
+        .caption {
+            display: inline-block;
+            background: #f0e4d8;
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-size: 1rem;
+            color: #4f372b;
+            letter-spacing: 0.8px;
+            border: 1px solid #e1ccbb;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            font-style: italic;
+        }
+
+        .caption::before, .caption::after {
+            content: "✦";
+            margin: 0 8px;
+            color: #b48b6e;
+            font-style: normal;
+            font-size: 0.9rem;
+        }
+
+        /* Ajustes finos para telas muito pequenas (menos de 360px) */
+        @media (max-width: 360px) {
+            .menu-header h1 {
+                font-size: 2rem;
+            }
+            .caption {
+                font-size: 0.9rem;
+                padding: 6px 16px;
+            }
+            .image-area {
+                padding: 10px 10px 5px;
+            }
+        }
+
+        /* Para telas maiores (como tablets) ainda fica elegante */
+        @media (min-width: 600px) {
+            body {
+                padding: 20px;
+            }
+            .menu-card {
+                max-width: 550px;
+            }
+            .menu-header h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-card">
+        <div class="menu-header">
+            <h1>Cardápio</h1>
+            <div class="header-decoration">
+                <span></span>
+                <i>☕</i>
+                <span></span>
+            </div>
+        </div>
+
+        <div class="image-area">
+            <div class="image-wrapper">
+                <!-- Substitua "Cardápio.jpeg" pelo caminho correto da imagem -->
+                <img src="Cardápio.jpeg" alt="Imagem do Cardápio" loading="lazy">
+            </div>
+        </div>
+
+        <div class="menu-footer">
+            <div class="caption">
+                Sabores que encantam
+            </div>
+        </div>
+    </div>
+</body>
+</html>
